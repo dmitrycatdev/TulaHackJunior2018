@@ -12,11 +12,9 @@ export default class AuthService{
 	/**
 	* Method for login (connect to server without JWT)
 	*/
-	login(login, password){
-
-		return axios.post(`/api/auth/login`, {login, password})
+	login(phone, password){
+		return axios.post(`${root}/api/login`, {phone, password})
 			.then(response => {
-
 				this.setToken(response.data.access_token);
 				return Promise.resolve(response)
 			});
@@ -26,7 +24,7 @@ export default class AuthService{
 	* Method for logout (connect to server with JWT)
 	*/
 	logout(){
-		this.fetch('/api/auth/logout', 'post');
+		this.fetch(`${root}/api/auth/logout`, 'post');
 		// localStorage.removeItem('id_token');
 		localStorage.clear();
 	}
@@ -118,6 +116,5 @@ export default class AuthService{
             throw error
         }
     }
-
-
 }
+const root = 'http://tester1.evgenytk.ru';

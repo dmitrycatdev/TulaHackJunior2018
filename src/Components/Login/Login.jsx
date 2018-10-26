@@ -7,7 +7,7 @@ export default class Login extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			login: '',
+			phone: '',
 			password: '',
 			errorMessage: ''
 		}
@@ -17,9 +17,9 @@ export default class Login extends React.Component {
 	inputChange = e => this.setState({ [e.target.name]: e.target.value })
 
 	formIsValid = () => {
-		let { login, password } = this.state;
+		let { phone, password } = this.state;
 
-		if (!login || !password){
+		if (!phone || !password){
 			this.setState({ errorMessage: 'Заполните все данные' });
 			return false;
 		} 
@@ -33,7 +33,7 @@ export default class Login extends React.Component {
 		if (!this.formIsValid()) 
 			return false;
 
-		this.Auth.login(this.state.login, this.state.password)
+		this.Auth.login(this.state.phone, this.state.password)
         .then(res =>{
            this.props.history.replace('/cabinet');
         })
@@ -43,28 +43,26 @@ export default class Login extends React.Component {
 	}
 
 	render() {
-		let { login, password, errorMessage } = this.state;
+		let { phone, password, errorMessage } = this.state;
 
 		if (this.Auth.loggedIn()) 
-			return <Redirect to='/cabinet' />
+			return <Redirect to='/feed' />
 
 		return <div>
 			<div className="login-box">
   <div className="login-logo">
-    <a href="../../index2.html">
       <b>Вход</b>
-    </a>
   </div>
   {/* /.login-logo */}
   <div className="login-box-body">
-    <form action="../../index2.html" method="post">
+    <form onSubmit={this.onLoginSubmit} method="post">
       <div className="form-group has-feedback">
         <input
             className="form-control"
-            value={login} 
+            value={phone} 
 		    onChange={this.inputChange}
-			name="login" 
-			placeholder="Ваш логин" 
+			name="phone" 
+			placeholder="Ваш телефон" 
         />
         <span className="glyphicon glyphicon-envelope form-control-feedback" />
       </div>
@@ -92,10 +90,13 @@ export default class Login extends React.Component {
         {/* /.col */}
       </div>
     </form>
+    {this.state.errorMessage && 
+        <p className="text-danger" > {this.state.errorMessage} </p>
+    }
     <div className="social-auth-links text-center">
       <p>или</p>
       <a
-        href="#"
+        href="javascript:void(0)"
         className="btn btn-block btn-social btn-facebook btn-flat"
       >
         <i className="fa fa-vk" /> Войти через вконтакте
