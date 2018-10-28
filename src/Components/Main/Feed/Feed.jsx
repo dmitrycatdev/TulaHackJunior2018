@@ -10,7 +10,8 @@ export class Feed extends React.Component {
         super();
         this.state = {
             isLoaded: false,
-            user: null
+            user: null,
+            posts: null
         }
         this.Auth = new AuthService();
     }
@@ -23,9 +24,19 @@ export class Feed extends React.Component {
                  user: res
              });
          })
+
+         this.Auth.fetch("http://tester1.evgenytk.ru/api/auth/news", 'get')
+         .then(res => 
+           {
+               this.setState({
+                   isLoaded: true,
+                   posts: Object.keys(res).map((key) => { return res[key] })
+               });
+           })
      }
     render() {
-        if (!this.state.isLoaded) {
+        console.log(this.state.posts)
+        if (!this.state.isLoaded && !this.state.posts   ) {
             return <Circle
                     color={"#fe8200"}
                     bgColor={"#fff"}
@@ -44,7 +55,7 @@ export class Feed extends React.Component {
             <section className="content">
                 <div className="row">
                 <section className="col-lg-10 connectedSortable">
-                {posts.map((post, index) => {
+                {this.state.posts && this.state.posts.map((post, index) => {
                     return <Post key={index} info={post} />;
                 })}
                 </section>
