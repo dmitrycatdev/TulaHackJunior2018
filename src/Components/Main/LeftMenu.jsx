@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import AuthService from '../Login/AuthService';
 
 
@@ -15,9 +15,14 @@ export class LeftMenu extends React.Component {
         <section className="sidebar">
           <div className="user-panel">
             <div className="pull-left image">
-              <img src="https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg" className="img-circle" alt="User Image" />
+            <img src={this.props.user && this.props.user.avatar} className="img-circle" alt="User Image" />
+
+              {/* <img src="https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg" className="img-circle" alt="User Image" /> */}
             </div>
             <div className="pull-left info">
+            <p> 
+              {this.props.user && this.props.user.last_name + ' ' + this.props.user.first_name}
+              </p>
               <span>гр. 228061</span>
             </div>
           </div>
@@ -32,10 +37,26 @@ export class LeftMenu extends React.Component {
           </form>
           <ul className="sidebar-menu" data-widget="tree">
             <li className="treeview">
-                <Link to={`/feed`}  activeClassName="active "><span>Новости</span></Link>
+                <NavLink to={`/feed`}  activeClassName="active"><span>Новости</span></NavLink>
             </li> 
             <li className="treeview">
-                <Link to={`/schedule`}  activeClassName="active "><span>Расписание</span></Link>
+                <NavLink to={`/schedule`} ><span>Расписание</span></NavLink>
+            </li> 
+            <li className="treeview">
+                <NavLink to={`/chat`} >
+                  <span>Сообщения</span> 
+                  <div className="pull-right">
+                    <i className="fa fa-comments" style={{marginRight:40}}></i>
+                  </div>
+                </NavLink>
+            </li> 
+            <li className="treeview">
+                <NavLink to={`/profile`} >
+                  <span>Мой профиль</span> 
+                  <div className="pull-right">
+                    <i className="fa fa-pie-chart" style={{marginRight:40}}></i>
+                  </div>
+                </NavLink>
             </li> 
           </ul>
         </section>

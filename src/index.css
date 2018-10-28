@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.schedule-nav > div {
+  font-size: 120%;
+  cursor: pointer;
+}
+.schedule-nav > div.active {
+
+  color: #fe8200;
+}
