@@ -35,7 +35,7 @@ export default class Login extends React.Component {
 
 		this.Auth.login(this.state.phone, this.state.password)
         .then(res =>{
-           this.props.history.replace('/cabinet');
+           this.props.history.replace('/feed');
         })
         .catch(err =>{
             this.setState({ errorMessage: 'Неправильный логин или пароль' });

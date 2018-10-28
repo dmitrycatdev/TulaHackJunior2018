@@ -11,7 +11,6 @@ export class TopMenu extends React.Component {
         {/* Logo */}
         <a href="javascript:void(0)" className="logo">
           <span className="logo-mini">
-            <b>A</b>LT
           </span>
           <span className="logo-lg" style={{
             width: "80%",

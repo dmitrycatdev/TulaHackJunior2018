@@ -7,13 +7,11 @@ export class Post extends React.Component {
 
     render() {
         return <div className="box box-primary">
-        <div className="box-header">
-          <h3 className="box-title">Пост {this.props.info}</h3>
-        </div>
+        
         <div className="box-body chat" id="chat-box">
   <div className="item">
     <img
-      src="https://adminlte.io/themes/AdminLTE/dist/img/user4-128x128.jpg"
+      src="https://yt3.ggpht.com/-cnRYyckfEIc/AAAAAAAAAAI/AAAAAAAAAAA/9annYfSQ3WM/s240-c-k-no-mo-rj-c0xffffff/photo.jpg"
       alt="user image"
       className="online"
     />
@@ -21,7 +19,7 @@ export class Post extends React.Component {
       <a href="#" className="name">
         <small className="text-muted pull-right">
           <i className="fa fa-clock-o" /> 2:15
-        </small>Mike Doe
+        </small>Зубенко Михаил Петрович
       </a>Лабораторные работы нужно сдать вовремя! Отчеты по гостам!
     </p>
     <div className="attachment">

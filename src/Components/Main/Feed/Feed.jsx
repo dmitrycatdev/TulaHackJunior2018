@@ -9,22 +9,32 @@ export class Feed extends React.Component {
     constructor(props) {
         super();
         this.state = {
+            isLoaded: false,
             user: null
         }
         this.Auth = new AuthService();
     }
-
+    componentDidMount() {
+        this.Auth.fetch("http://tester1.evgenytk.ru/api/auth/me", 'get')
+       .then(res => 
+         {
+             this.setState({
+                 isLoaded: true,
+                 user: res
+             });
+         })
+     }
     render() {
-        // if (!this.state.isLoaded) {
-        //     return <Circle
-        //             color={"#fe8200"}
-        //             bgColor={"#fff"}
-        //             time={140} />
-        // }
+        if (!this.state.isLoaded) {
+            return <Circle
+                    color={"#fe8200"}
+                    bgColor={"#fff"}
+                    time={140} />
+        }
         return <div>
             <div className="wrapper"></div>
-            <TopMenu user={this.props.user} />
-            <LeftMenu user={this.props.user} />
+            <TopMenu user={this.state.user} />
+            <LeftMenu user={this.state.user} />
             <div className="content-wrapper">
             <section className="content-header">
                 <h1>
